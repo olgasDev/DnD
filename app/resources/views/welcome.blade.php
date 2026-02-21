@@ -80,9 +80,20 @@
             <div class="message success">{{ session('success') }}</div>
         @endif
 
+        @if (session('error'))
+            <div class="message error">{{ session('error') }}</div>
+        @endif
+
         @error('question')
             <div class="message error">{{ $message }}</div>
         @enderror
+
+        @if (session('answer'))
+            <section class="message success">
+                <strong>Ответ OpenAI:</strong>
+                <p style="margin: 8px 0 0; white-space: pre-wrap;">{{ session('answer') }}</p>
+            </section>
+        @endif
 
         <form method="POST" action="{{ route('question.submit') }}">
             @csrf
